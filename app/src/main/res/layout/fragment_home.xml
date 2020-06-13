@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.HomeFragment">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="end"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <ImageView
+
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/ic_admin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YM Admin 01"
+            android:textStyle="bold"
+            android:textColor="@color/YMAutoWheel"
+            android:paddingTop="8dp"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/YMAutoWheel"
+            android:text="About Us"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:textColor="@color/YMAutoWheel"
+            android:text="YM Auto Wheel"/>
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            android:src="@drawable/about"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/Biru"
+            android:text="Misi Kami,"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:textColor="@color/Biru"
+            android:text="YM Autowheel bergerak dibidang otomotif khususnya servis dan penjualan yang berdiri sejak 2009. Kami akan selalu mengedepankan kepuasan konsumen"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
