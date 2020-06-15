@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.ymautowheel.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_ban"
+        android:name="com.example.ymautowheel.ui.ban.BanFragment"
+        android:label="Halaman Ban"
+        tools:layout="@layout/fragment_ban" />
+
+    <fragment
+        android:id="@+id/nav_suspensi"
+        android:name="com.example.ymautowheel.ui.suspensi.SuspensiFragment"
+        android:label="Halaman Suspensi"
+        tools:layout="@layout/fragment_suspensi" />
+
+    <fragment
+        android:id="@+id/nav_velg"
+        android:name="com.example.ymautowheel.ui.velg.VelgFragment"
+        android:label="Halaman Velg"
+        tools:layout="@layout/fragment_velg" />
+</navigation>
