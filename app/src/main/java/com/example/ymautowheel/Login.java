@@ -37,6 +37,14 @@ public class Login extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
 
+        Session session = new Session(Login.this);
+        String email = session.getEmail();
+
+        if(email!=null){
+            Intent pindah = new Intent(Login.this, MainActivity.class);
+            startActivity(pindah);
+        }
+
         tvRegister = findViewById(R.id.tvRegister);
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
