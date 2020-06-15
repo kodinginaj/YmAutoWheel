@@ -34,24 +34,10 @@
                 android:id="@+id/tv_merekban"/>
         </LinearLayout>
 
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10">
-            <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:id="@+id/btnUbahMerek"
-                android:background="@drawable/ic_editmerek"
-                />
-
-        </LinearLayout>
-
         <LinearLayout
             android:layout_weight="10"
             android:layout_width="0dp"
+            android:gravity="end"
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/btnTambahTipe"
@@ -63,6 +49,23 @@
 
         <LinearLayout
             android:layout_width="0dp"
+            android:gravity="end"
+            android:layout_height="match_parent"
+            android:layout_weight="10">
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:id="@+id/btnUbahMerek"
+                android:background="@drawable/ic_editmerek"
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:gravity="end"
             android:layout_height="match_parent"
             android:layout_weight="10">
 
