@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".informasi_stokban">
+    tools:context=".Informasi_stokban">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,6 +70,7 @@
                     android:gravity="left"
                     android:text="Ban Semi Slick"
                     android:textSize="25sp"
+                    android:id="@+id/tvBan"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -89,7 +90,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tampilMerekBan"
+            android:id="@+id/tampilStokBan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp"

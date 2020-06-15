@@ -1,5 +1,6 @@
 package com.example.ymautowheel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -47,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.getMenu().findItem(R.id.nav_ban).setOnMenuItemClickListener(menuItem -> {
+            Intent pindah = new Intent(MainActivity.this, BanActivity.class);
+            pindah.putExtra("halaman", "tracking");
+            startActivity(pindah);
+            return true;
+        });
     }
 
     @Override

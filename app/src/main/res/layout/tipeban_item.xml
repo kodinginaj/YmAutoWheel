@@ -31,11 +31,12 @@
             android:layout_height="match_parent"
             android:gravity="end"
             android:layout_weight="15">
+
             <ImageView
+                android:id="@+id/btnUbahTipe"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_edit"
-                />
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_edit" />
 
         </LinearLayout>
 
@@ -45,10 +46,10 @@
             android:gravity="end"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/btnKomplain"
+                android:id="@+id/btnDelete"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@drawable/ic_plus2" />
+                android:background="@drawable/ic_delete" />
 
         </LinearLayout>
 

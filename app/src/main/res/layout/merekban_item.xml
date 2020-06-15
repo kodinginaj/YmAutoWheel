@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+
+<LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
@@ -27,14 +34,21 @@
                 android:id="@+id/tv_merekban"/>
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/btnDelete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_delete" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="end"
             android:layout_weight="15">
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/btnUbahMerek"
                 android:background="@drawable/ic_edit"
                 />
 
@@ -46,21 +60,19 @@
             android:gravity="end"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/btnKomplain"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:id="@+id/btnTambahTipe"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/ic_plus2"/>
 
         </LinearLayout>
 
     </LinearLayout>
+</LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tampilTipeBan"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="15dp"
-        android:scrollbars="vertical"/>
-
+<androidx.recyclerview.widget.RecyclerView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/rvTipeBan"/>
 
 </LinearLayout>
