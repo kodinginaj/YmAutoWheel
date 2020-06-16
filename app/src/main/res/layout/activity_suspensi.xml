@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BanActivity">
-
+    tools:context=".SuspensiActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,11 +30,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BAN"
+                android:text="SUSPENSI"
                 android:textColor="@color/Putih"
                 android:textSize="25dp"
-                android:layout_gravity="center"
-                android:id="@+id/toolbar_title" />
+                android:layout_gravity="center"/>
 
             <ImageView
                 android:layout_marginRight="10dp"
@@ -63,7 +61,6 @@
             android:layout_height="40dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tampilMerekBan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical">
@@ -71,6 +68,7 @@
 
 
         </androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
 
 </LinearLayout>

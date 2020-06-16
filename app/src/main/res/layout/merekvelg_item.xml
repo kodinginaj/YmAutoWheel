@@ -21,9 +21,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="15dp"
-                android:text="Tipe Ban"
+                android:text="AIR GEN"
                 android:textSize="16dp"
-                android:id="@+id/tv_tipeban"/>
+                android:id="@+id/tv_mereksuspensi"/>
         </LinearLayout>
 
         <LinearLayout

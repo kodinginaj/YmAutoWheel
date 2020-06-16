@@ -31,19 +31,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BAN"
+                android:text="Notifikasi"
                 android:textColor="@color/Putih"
                 android:textSize="25dp"
                 android:layout_gravity="center"
                 android:id="@+id/toolbar_title" />
 
-            <ImageView
-                android:layout_marginRight="10dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end"
-                android:id="@+id/ivNotif"
-                android:src="@drawable/ic_plus"/>
+
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -56,11 +50,6 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.SearchView
-            android:layout_width="match_parent"
-            android:layout_margin="15dp"
-            android:background="@drawable/bg_search"
-            android:layout_height="40dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tampilMerekBan"
