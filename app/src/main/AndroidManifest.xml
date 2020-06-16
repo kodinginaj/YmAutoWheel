@@ -10,9 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".tambah_stockban"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".notification"></activity>
+        <activity android:name=".Informasi_stoksuspensi" />
+        <activity android:name=".SuspensiActivity" />
+        <activity android:name=".tambah_stockban" />
         <activity android:name=".Informasi_stokban" />
         <activity android:name=".BanActivity" />
         <activity
