@@ -30,7 +30,7 @@ public interface ApiRequest {
     Call<ResponseModelBan> getMerekTipe();
 
     @FormUrlEncoded
-    @POST("ban/insertNerek.php")
+    @POST("ban/insertMerek.php")
     Call<ResponseModel> insertMerek(
             @Field("nama") String nama
     );
