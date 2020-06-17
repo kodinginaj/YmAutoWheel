@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".tambah_stockban">
+    tools:context=".Tambah_stockban">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,72 +45,85 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:padding="30dp"
+        android:layout_height="match_parent"
         android:background="#f1f1f1"
-        android:layout_height="match_parent">
+        android:orientation="vertical"
+        android:padding="30dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TAMBAH BAN"
             android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/text"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="UK"/>
+            android:text="UK" />
+
         <EditText
+            android:id="@+id/etUkuranF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textareaputih"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/textareaputih" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jumlah"/>
+            android:text="Jumlah" />
+
         <EditText
+            android:id="@+id/etJumlahF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textareaputih"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/textareaputih" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Expired"/>
+            android:text="Expired" />
+
         <EditText
+            android:id="@+id/etKadaluarsaF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textareaputih"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/textareaputih" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Harga Barang"/>
+            android:text="Harga Barang" />
+
         <EditText
+            android:id="@+id/etHargaF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textareaputih"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/textareaputih" />
+
         <Button
+            android:id="@+id/btnTambah"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
-            android:text="Tambah"
             android:layout_gravity="end"
             android:layout_marginTop="20dp"
             android:background="@drawable/button"
-            android:textColor="@color/Putih"/>
+            android:text="Tambah"
+            android:textColor="@color/Putih" />
     </LinearLayout>
 
 </LinearLayout>

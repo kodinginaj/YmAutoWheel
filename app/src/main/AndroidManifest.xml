@@ -15,7 +15,7 @@
         <activity android:name=".notification"></activity>
         <activity android:name=".Informasi_stoksuspensi" />
         <activity android:name=".SuspensiActivity" />
-        <activity android:name=".tambah_stockban" />
+        <activity android:name=".Tambah_stockban" />
         <activity android:name=".Informasi_stokban" />
         <activity android:name=".BanActivity" />
         <activity
