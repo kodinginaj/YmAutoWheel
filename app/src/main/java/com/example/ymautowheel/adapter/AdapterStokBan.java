@@ -3,12 +3,15 @@ package com.example.ymautowheel.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ymautowheel.BanActivity;
 import com.example.ymautowheel.Informasi_stokban;
 import com.example.ymautowheel.R;
+import com.example.ymautowheel.Ubah_stockban;
 import com.example.ymautowheel.api.ApiRequest;
 import com.example.ymautowheel.api.Retroserver;
 import com.example.ymautowheel.model.BanModel;
@@ -71,8 +75,15 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
     class TampungData extends RecyclerView.ViewHolder {
 
         TextView etExpired,etUkuran,etJumlah,etHarga;
-        ImageView btnDelete;
+        ImageView btnDelete, btnEdit, btnUbahBan;
         BanModel dataBan;
+        EditText etUbah;
+
+        RadioButton cbTambah, cbKurang;
+
+        AlertDialog.Builder dialog;
+        LayoutInflater inflater;
+        View dialogView;
 
         private TampungData(View v) {
             super(v);
@@ -81,6 +92,29 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
             etUkuran = v.findViewById(R.id.etUkuran);
             etJumlah = v.findViewById(R.id.etJumlah);
             etHarga = v.findViewById(R.id.etHarga);
+            btnEdit = v.findViewById(R.id.btnEdit);
+
+            btnUbahBan = v.findViewById(R.id.btnUbahBan);
+            btnUbahBan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent pindah = new Intent(ctx, Ubah_stockban.class);
+                    pindah.putExtra("Id",dataBan.getId());
+                    pindah.putExtra("Ukuran",dataBan.getUkuran());
+                    pindah.putExtra("Harga",dataBan.getHarga());
+                    pindah.putExtra("Expired",dataBan.getKadaluarsa());
+                    pindah.putExtra("idMerek", dataBan.getMerek_ban_id());
+                    pindah.putExtra("idTipe", dataBan.getTipe_ban_id());
+                    ctx.startActivity(pindah);
+                }
+            });
+
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DialogForm2();
+                }
+            });
 
             btnDelete = v.findViewById(R.id.btnDelete);
             btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +123,83 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
                     DialogForm();
                 }
             });
+        }
+
+        private void DialogForm2() {
+            dialog = new AlertDialog.Builder(ctx);
+            inflater = LayoutInflater.from(ctx);
+            dialogView = inflater.inflate(R.layout.modal_stokban, null);
+            dialog.setView(dialogView);
+            dialog.setCancelable(true);
+
+            etUbah = dialogView.findViewById(R.id.stokBaru);
+//            etUbah.setText(dataBan.getJumlah());
+
+            cbTambah = dialogView.findViewById(R.id.cbTambah);
+            cbKurang = dialogView.findViewById(R.id.cbKurang);
+
+            dialog.setPositiveButton("SET", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    String id = dataBan.getId();
+                    String jumlahTotal = dataBan.getJumlah();
+                    String jumlahUbah = etUbah.getText().toString();
+
+                    if (!etUbah.getText().toString().isEmpty()) {
+
+                        if (cbTambah.isChecked()) {
+                            Log.d("AJ",""+id+jumlahTotal+jumlahUbah);
+
+                            ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
+                            Call<ResponseModel> tambahBan = api.tambahBan(id, jumlahTotal, jumlahUbah);
+                            tambahBan.enqueue(new Callback<ResponseModel>() {
+                                @Override
+                                public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                                    Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    Intent pindah = new Intent(ctx, Informasi_stokban.class);
+                                    pindah.putExtra("idMerek", dataBan.getMerek_ban_id());
+                                    pindah.putExtra("idTipe", dataBan.getTipe_ban_id());
+                                    ctx.startActivity(pindah);
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                    Toast.makeText(ctx, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else if(cbKurang.isChecked()){
+                            ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
+                            Call<ResponseModel> kurangBan = api.kurangBan(id, jumlahTotal, jumlahUbah);
+                            kurangBan.enqueue(new Callback<ResponseModel>() {
+                                @Override
+                                public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                                    Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    Intent pindah = new Intent(ctx, Informasi_stokban.class);
+                                    pindah.putExtra("idMerek", dataBan.getMerek_ban_id());
+                                    pindah.putExtra("idTipe", dataBan.getTipe_ban_id());
+                                    ctx.startActivity(pindah);
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                    Toast.makeText(ctx, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+
+            dialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
         }
 
         private void DialogForm() {
@@ -101,8 +212,8 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
                     String id = dataBan.getId();
 
                     ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
-                    Call<ResponseModel> hapusBan = api.deleteBan(id);
-                    hapusBan.enqueue(new Callback<ResponseModel>() {
+                    Call<ResponseModel> deleteBan = api.deleteBan(id);
+                    deleteBan.enqueue(new Callback<ResponseModel>() {
                         @Override
                         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                             Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -129,5 +240,4 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
             alert.show();
         }
     }
-
 }
