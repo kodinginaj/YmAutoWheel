@@ -112,7 +112,7 @@ public interface ApiRequest {
     Call<ResponseModel> kurangBan(
             @Field("id") String id,
             @Field("jumlahTotal") String jumlahTotal,
-            @Field("jumlahTambah") String jumlahTambah
+            @Field("jumlahKurang") String jumlahKurang
     );
 
     @FormUrlEncoded

@@ -32,23 +32,27 @@
             android:layout_width="match_parent"
             android:layout_marginBottom="15dp"
             android:layout_height="wrap_content">
+
             <RadioButton
-                android:button="@drawable/custome_radiobutton"
+                android:id="@+id/cbTambah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tambah Stock"/>
+                android:button="@drawable/custome_radiobutton"
+                android:text="Tambah Stock" />
         </RadioGroup>
         <RadioGroup
             android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_marginBottom="15dp"
             android:layout_height="wrap_content">
+
             <RadioButton
 
-                android:button="@drawable/custome_radiobutton"
+                android:id="@+id/cbKurang"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kurangi Stock"/>
+                android:layout_height="match_parent"
+                android:button="@drawable/custome_radiobutton"
+                android:text="Kurangi Stock" />
 
         </RadioGroup>
 
@@ -61,20 +65,20 @@
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:textColor="@color/colorPrimary"
-        android:text="Jumlah yang dikurangi:"
+        android:text="Jumlah yang diubah:"
         android:textSize="14sp"/>
+
     <EditText
-        android:id="@+id/etTipeBan"
+        android:id="@+id/stokBaru"
         android:layout_width="140dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:layout_marginLeft="55dp"
-        android:padding="5dp"
         android:layout_marginRight="55dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/textarea_merahputih"
-        />
+        android:gravity="center"
+        android:padding="5dp" />
 
 
 
