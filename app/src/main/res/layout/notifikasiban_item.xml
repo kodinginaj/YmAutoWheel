@@ -21,7 +21,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/ic_warning"
+                android:id="@+id/ivLogoFoto"
                 />
 
             <LinearLayout
@@ -42,6 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Spesifikasi"
+                    android:id="@+id/tv_keterangan"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -65,6 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/tv_stock"
                 android:textStyle="bold"
                 android:text="5 stock"
                 android:textColor="@color/colorPrimary"
