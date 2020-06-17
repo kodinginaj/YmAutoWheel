@@ -2,6 +2,7 @@ package com.example.ymautowheel.api;
 
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.ResponseModelBan;
+import com.example.ymautowheel.model.ResponseModelNotifikasi;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -74,6 +75,10 @@ public interface ApiRequest {
             @Field("tipeId") String tipeId
     );
 
+
+    @GET("getNotifikasi.php")
+    Call<ResponseModelNotifikasi> getNotifikasi();
+
     @FormUrlEncoded
     @POST("ban/insertBan.php")
     Call<ResponseModel> insertBan(
@@ -120,5 +125,6 @@ public interface ApiRequest {
     Call<ResponseModelBan> searchMerek(
             @Field("keyword") String query
     );
+
 
 }
