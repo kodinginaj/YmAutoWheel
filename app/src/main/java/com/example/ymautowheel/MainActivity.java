@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -18,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ImageView iNotif;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        iNotif = (ImageView)findViewById(R.id.ivNotif);
+        iNotif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Notification.class));
+            }
+        });
+
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -51,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.getMenu().findItem(R.id.nav_ban).setOnMenuItemClickListener(menuItem -> {
             Intent pindah = new Intent(MainActivity.this, BanActivity.class);
-            pindah.putExtra("halaman", "tracking");
             startActivity(pindah);
             return true;
         });
