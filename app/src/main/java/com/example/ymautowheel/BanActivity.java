@@ -7,15 +7,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.ymautowheel.adapter.AdapterMerekBan;
+import com.example.ymautowheel.adapter.AdapterStokBan;
 import com.example.ymautowheel.api.ApiRequest;
 import com.example.ymautowheel.api.Retroserver;
 import com.example.ymautowheel.model.MerekBanModel;
@@ -23,6 +26,8 @@ import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.ResponseModelBan;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,6 +44,8 @@ public class BanActivity extends AppCompatActivity {
     LayoutInflater inflater;
     View dialogView;
 
+    SearchView search;
+
     ImageView ivBack, ivNotif;
 
     List<MerekBanModel> listBan = new ArrayList<>();
@@ -54,6 +61,37 @@ public class BanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent pindah = new Intent(BanActivity.this, MainActivity.class);
                 startActivity(pindah);
+            }
+        });
+
+        search = findViewById(R.id.search);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
+                Call<ResponseModelBan> getBan = api.searchMerek(query);
+                getBan.enqueue(new Callback<ResponseModelBan>() {
+                    @Override
+                    public void onResponse(Call<ResponseModelBan> call, Response<ResponseModelBan> response) {
+                        listBan = response.body().getMerek_bans();
+
+                        adapterBan = new AdapterMerekBan(BanActivity.this, listBan);
+                        tampilBan.setAdapter(adapterBan);
+                        adapterBan.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseModelBan> call, Throwable t) {
+                        Toast.makeText(BanActivity.this,"Koneksi Gagal",Toast.LENGTH_LONG).show();
+                    }
+                });
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
 

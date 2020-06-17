@@ -58,11 +58,14 @@
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:layout_weight="10">
+
             <ImageView
+                android:id="@+id/btnEdit"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
                 android:background="@drawable/ic_editstock"
                 />
+
 
 
         </LinearLayout>
@@ -85,11 +88,12 @@
             android:layout_weight="10"
             android:layout_width="0dp"
             android:layout_height="match_parent">
+
             <ImageView
+                android:id="@+id/btnDelete"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
-                android:background="@drawable/ic_delete"
-                />
+                android:background="@drawable/ic_delete" />
 
         </LinearLayout>
 

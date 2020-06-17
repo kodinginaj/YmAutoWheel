@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class Informasi_stokban extends AppCompatActivity {
     private RecyclerView.Adapter adapterBan;
 
     List<BanModel> listBan;
+    Button btnTambah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,17 @@ public class Informasi_stokban extends AppCompatActivity {
         tampilBan = findViewById(R.id.tampilStokBan);
         layoutBan = new LinearLayoutManager(Informasi_stokban.this, RecyclerView.VERTICAL, false);
         tampilBan.setLayoutManager(layoutBan);
+
+        btnTambah = findViewById(R.id.btnTambah);
+        btnTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pindah = new Intent(Informasi_stokban.this, Tambah_stockban.class );
+                pindah.putExtra("idTipe",idTipe);
+                pindah.putExtra("idMerek",idMerek);
+                startActivity(pindah);
+            }
+        });
 
         ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
         Call<ResponseModelBan> getBan = api.getBan(idMerek,idTipe);

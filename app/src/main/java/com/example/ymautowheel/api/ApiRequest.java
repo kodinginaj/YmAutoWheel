@@ -75,6 +75,56 @@ public interface ApiRequest {
             @Field("tipeId") String tipeId
     );
 
+
     @GET("getNotifikasi.php")
     Call<ResponseModelNotifikasi> getNotifikasi();
+
+    @FormUrlEncoded
+    @POST("ban/insertBan.php")
+    Call<ResponseModel> insertBan(
+            @Field("merekId") String merekId,
+            @Field("tipeId") String tipeId,
+            @Field("ukuran") String ukuran,
+            @Field("kadaluarsa") String kadaluarsa,
+            @Field("jumlah") String jumlah,
+            @Field("harga") String harga
+    );
+
+    @FormUrlEncoded
+    @POST("ban/updateBan.php")
+    Call<ResponseModel> updateBan(
+            @Field("id") String id,
+            @Field("ukuran") String ukuran,
+            @Field("harga") String harga
+    );
+
+    @FormUrlEncoded
+    @POST("ban/deleteBan.php")
+    Call<ResponseModel> deleteBan(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("ban/tambahStockBan.php")
+    Call<ResponseModel> tambahBan(
+            @Field("id") String id,
+            @Field("jumlahTotal") String jumlahTotal,
+            @Field("jumlahTambah") String jumlahTambah
+    );
+
+    @FormUrlEncoded
+    @POST("ban/kurangStockBan.php")
+    Call<ResponseModel> kurangBan(
+            @Field("id") String id,
+            @Field("jumlahTotal") String jumlahTotal,
+            @Field("jumlahTambah") String jumlahTambah
+    );
+
+    @FormUrlEncoded
+    @POST("ban/searchMerek.php")
+    Call<ResponseModelBan> searchMerek(
+            @Field("keyword") String query
+    );
+
+
 }
