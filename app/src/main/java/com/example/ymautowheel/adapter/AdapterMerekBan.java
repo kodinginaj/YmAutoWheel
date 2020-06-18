@@ -1,5 +1,6 @@
 package com.example.ymautowheel.adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -143,17 +144,28 @@ public class AdapterMerekBan extends RecyclerView.Adapter<AdapterMerekBan.Tampun
                     if (!etTipe.getText().toString().isEmpty()){
                         ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
                         Call<ResponseModel> tambahTipe = api.insertTipe(merekBan.getId(),tipe);
+
+                        final ProgressDialog progressDialog;
+                        progressDialog = new ProgressDialog(ctx);
+                        progressDialog.setMessage("Mohon tunggu....");
+                        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+
                         tambahTipe.enqueue(new Callback<ResponseModel>() {
                             @Override
                             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                                 Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                 Intent pindah = new Intent(ctx,BanActivity.class);
+                                pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                progressDialog.dismiss();
                                 ctx.startActivity(pindah);
                             }
 
                             @Override
                             public void onFailure(Call<ResponseModel> call, Throwable t) {
                                 Toast.makeText(ctx, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                             }
                         });
                     }
@@ -196,17 +208,28 @@ public class AdapterMerekBan extends RecyclerView.Adapter<AdapterMerekBan.Tampun
                     if (!komplain.getText().toString().isEmpty()){
                         ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
                         Call<ResponseModel> ubahMerek = api.updateMerek(merekBan.getId(),nama);
+
+                        final ProgressDialog progressDialog;
+                        progressDialog = new ProgressDialog(ctx);
+                        progressDialog.setMessage("Mohon tunggu....");
+                        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+
                         ubahMerek.enqueue(new Callback<ResponseModel>() {
                             @Override
                             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                                 Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                 Intent pindah = new Intent(ctx,BanActivity.class);
+                                pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                progressDialog.dismiss();
                                 ctx.startActivity(pindah);
                             }
 
                             @Override
                             public void onFailure(Call<ResponseModel> call, Throwable t) {
                                 Toast.makeText(ctx, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                             }
                         });
                     }
@@ -231,19 +254,30 @@ public class AdapterMerekBan extends RecyclerView.Adapter<AdapterMerekBan.Tampun
                 public void onClick(DialogInterface dialog, int which) {
                     String id = merekBan.getId();
 
-                   ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
-                   Call<ResponseModel> hapusMerek = api.deleteMerek(id);
+                    ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
+                    Call<ResponseModel> hapusMerek = api.deleteMerek(id);
+
+                    final ProgressDialog progressDialog;
+                    progressDialog = new ProgressDialog(ctx);
+                    progressDialog.setMessage("Mohon tunggu....");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+
                    hapusMerek.enqueue(new Callback<ResponseModel>() {
                        @Override
                        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                            Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                            Intent pindah = new Intent(ctx,BanActivity.class);
+                           pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                           progressDialog.dismiss();
                            ctx.startActivity(pindah);
                        }
 
                        @Override
                        public void onFailure(Call<ResponseModel> call, Throwable t) {
                            Toast.makeText(ctx, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                           progressDialog.dismiss();
                        }
                    });
                 }

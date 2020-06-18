@@ -88,6 +88,7 @@ public class Login extends AppCompatActivity {
 
                                 Intent pindah = new Intent(Login.this, MainActivity.class);
                                 startActivity(pindah);
+                                finish();
                                 progressDialog.dismiss();
                             } else if (response.body().getStatus().equals("0")) {
                                 Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
