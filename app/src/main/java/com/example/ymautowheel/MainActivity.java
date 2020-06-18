@@ -63,6 +63,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(pindah);
             return true;
         });
+
+        navigationView.getMenu().findItem(R.id.nav_suspensi).setOnMenuItemClickListener(menuItem -> {
+            Intent pindah = new Intent(MainActivity.this, SuspensiActivity.class);
+            startActivity(pindah);
+            return true;
+        });
+
+
+//        navigationView.getMenu().findItem(R.id.nav_velg).setOnMenuItemClickListener(menuItem -> {
+//            Intent pindah = new Intent(MainActivity.this, Velg.class);
+//            startActivity(pindah);
+//            return true;
+//        });
     }
 
     @Override

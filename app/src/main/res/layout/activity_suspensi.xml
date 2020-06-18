@@ -54,17 +54,18 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.SearchView
+        <SearchView
+            android:id="@+id/search1"
             android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_margin="15dp"
-            android:background="@drawable/bg_search"
-            android:layout_height="40dp"/>
+            android:background="@drawable/bg_search" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/kategosiSuspensi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical">
-
 
 
         </androidx.recyclerview.widget.RecyclerView>

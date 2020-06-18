@@ -64,33 +64,35 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_marginTop="13dp"
+                    android:id="@+id/tvNamaSuspensi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:gravity="left"
                     android:text="AIR GEN"
                     android:textSize="18sp"
-                    android:id="@+id/tvBan"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="30">
+
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tambah"
+                    android:layout_width="101dp"
+                    android:layout_height="33dp"
                     android:background="@drawable/button"
                     android:padding="5dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/Putih"/>
+                    android:text="Tambah"
+                    android:id="@+id/btnTambahSuspensi"
+                    android:textColor="@color/Putih"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tampilStokBan"
+            android:id="@+id/rvSuspensi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp"

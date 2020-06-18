@@ -12,12 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".Ubah_stockban"></activity>
+        <activity android:name=".Ubah_stocksuspensi"></activity>
+        <activity android:name=".Tambah_stocksuspensi" />
+        <activity android:name=".Ubah_stockban" />
         <activity android:name=".notification" />
-
-        <activity android:name=".Notification"></activity>
-
+        <activity android:name=".Notification" />
         <activity android:name=".Informasi_stoksuspensi" />
         <activity android:name=".SuspensiActivity" />
         <activity android:name=".Tambah_stockban" />
