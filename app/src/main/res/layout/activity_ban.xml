@@ -42,7 +42,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
-                android:id="@+id/ivNotif"
+                android:id="@+id/ivAddMerekBan"
                 android:src="@drawable/ic_plus"/>
 
         </androidx.appcompat.widget.Toolbar>

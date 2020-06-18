@@ -8,7 +8,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.media.Image;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ymautowheel.adapter.AdapterNotif;
@@ -25,6 +28,7 @@ public class Notification extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutNotif;
     private RecyclerView.Adapter adapterNotif;
     private List<NotifikasiModel> listNotif;
+    private ImageView iBack;
 
 
     @Override
@@ -35,9 +39,17 @@ public class Notification extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recyclerview_divider));
 
+        iBack = findViewById(R.id.ivNotifBack);
         tampilNotif = findViewById(R.id.rvNotifikasi);
         layoutNotif = new LinearLayoutManager(Notification.this, RecyclerView.VERTICAL, false);
         tampilNotif.setLayoutManager(layoutNotif);
+
+        iBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         ApiRequest apiRequest = Retroserver.getClient().create(ApiRequest.class);
         retrofit2.Call<ResponseModelNotifikasi> getNotif = apiRequest.getNotifikasi();
@@ -49,10 +61,7 @@ public class Notification extends AppCompatActivity {
                     adapterNotif = new AdapterNotif(Notification.this, listNotif);
                     tampilNotif.setAdapter(adapterNotif);
                     adapterNotif.notifyDataSetChanged();
-                    Toast.makeText(Notification.this, "Dalem IF", Toast.LENGTH_SHORT).show();
                 }
-
-                Toast.makeText(Notification.this, "Luar IF", Toast.LENGTH_SHORT).show();
             }
 
             @Override

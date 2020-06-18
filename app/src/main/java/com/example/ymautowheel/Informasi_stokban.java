@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,14 +28,15 @@ import retrofit2.Response;
 
 public class Informasi_stokban extends AppCompatActivity {
 
-    TextView tvBan;
+    private TextView tvBan;
 
     private RecyclerView tampilBan;
     private RecyclerView.LayoutManager layoutBan;
     private RecyclerView.Adapter adapterBan;
 
-    List<BanModel> listBan;
-    Button btnTambah;
+    private List<BanModel> listBan;
+    private Button btnTambah;
+    private ImageView ivBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +48,21 @@ public class Informasi_stokban extends AppCompatActivity {
         String idMerek = data.getStringExtra("idMerek");
         String nama = data.getStringExtra("nama");
 
+
         tvBan = findViewById(R.id.tvBan);
         tvBan.setText(nama);
 
         tampilBan = findViewById(R.id.tampilStokBan);
         layoutBan = new LinearLayoutManager(Informasi_stokban.this, RecyclerView.VERTICAL, false);
         tampilBan.setLayoutManager(layoutBan);
+
+        ivBack = findViewById(R.id.ivBackStockBan);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         btnTambah = findViewById(R.id.btnTambah);
         btnTambah.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +71,7 @@ public class Informasi_stokban extends AppCompatActivity {
                 Intent pindah = new Intent(Informasi_stokban.this, Tambah_stockban.class );
                 pindah.putExtra("idTipe",idTipe);
                 pindah.putExtra("idMerek",idMerek);
+                pindah.putExtra("nama",nama);
                 startActivity(pindah);
             }
         });
@@ -71,7 +83,7 @@ public class Informasi_stokban extends AppCompatActivity {
             public void onResponse(Call<ResponseModelBan> call, Response<ResponseModelBan> response) {
                 listBan = response.body().getBans();
 
-                adapterBan = new AdapterStokBan(Informasi_stokban.this, listBan);
+                adapterBan = new AdapterStokBan(Informasi_stokban.this, listBan,nama);
                 tampilBan.setAdapter(adapterBan);
                 adapterBan.notifyDataSetChanged();
             }

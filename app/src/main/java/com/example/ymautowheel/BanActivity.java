@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
@@ -91,11 +92,30 @@ public class BanActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                if (newText.isEmpty()){
+                    ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
+                    Call<ResponseModelBan> getMerekTipe = api.getMerekTipe();
+                    getMerekTipe.enqueue(new Callback<ResponseModelBan>() {
+                        @Override
+                        public void onResponse(Call<ResponseModelBan> call, Response<ResponseModelBan> response) {
+                            listBan = response.body().getMerek_bans();
+
+                            adapterBan = new AdapterMerekBan(BanActivity.this, listBan);
+                            tampilBan.setAdapter(adapterBan);
+                            adapterBan.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseModelBan> call, Throwable t) {
+                            Toast.makeText(BanActivity.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                return true;
             }
         });
 
-        ivNotif = findViewById(R.id.ivNotif);
+        ivNotif = findViewById(R.id.ivAddMerekBan);
         ivNotif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,17 +164,28 @@ public class BanActivity extends AppCompatActivity {
                 if (!komplain.getText().toString().isEmpty()){
                     ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
                     Call<ResponseModel> insertMerek = api.insertMerek(nama);
+
+                    final ProgressDialog progressDialog;
+                    progressDialog = new ProgressDialog(BanActivity.this);
+                    progressDialog.setMessage("Mohon tunggu....");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+
                     insertMerek.enqueue(new Callback<ResponseModel>() {
                         @Override
                         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                             Toast.makeText(BanActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             Intent pindah = getIntent();
+                            pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            progressDialog.dismiss();
                             startActivity(pindah);
                         }
 
                         @Override
                         public void onFailure(Call<ResponseModel> call, Throwable t) {
                             Toast.makeText(BanActivity.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
                         }
                     });
                 }
