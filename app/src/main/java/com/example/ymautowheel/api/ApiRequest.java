@@ -3,6 +3,7 @@ package com.example.ymautowheel.api;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.ResponseModelBan;
 import com.example.ymautowheel.model.ResponseModelNotifikasi;
+import com.example.ymautowheel.model.ResponseModelSuspensi;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -126,5 +127,167 @@ public interface ApiRequest {
             @Field("keyword") String query
     );
 
+    @GET("suspensi/getKategoriMerek.php")
+    Call<ResponseModelSuspensi> getKategoriMerekSuspensi();
+
+    @FormUrlEncoded
+    @POST("suspensi/searchKategori.php")
+    Call<ResponseModelSuspensi> searchSuspensi(
+            @Field("keyword") String keyword
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/insertKategori.php")
+    Call<ResponseModel> insertKategoriSuspensi(
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/updateKategori.php")
+    Call<ResponseModel> updateKategoriSuspensi(
+            @Field("id") String id,
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/deleteKategori.php")
+    Call<ResponseModel> deleteKategoriSuspensi(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/insertMerek.php")
+    Call<ResponseModel> insertMerekSuspensi(
+            @Field("kategoriId") String kategoriId,
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/updateMerek.php")
+    Call<ResponseModel> updateMerekSuspensi(
+            @Field("id") String id,
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/deleteMerek.php")
+    Call<ResponseModel> deleteMerekSuspensi(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/getSuspensi.php")
+    Call<ResponseModelSuspensi> getSuspensi(
+            @Field("kategoriId") String kategoriId,
+            @Field("merekId") String merekId
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/insertSuspensi.php")
+    Call<ResponseModel> insertSuspensi(
+            @Field("kategoriId") String kategoriId,
+            @Field("merekId") String merekId,
+            @Field("spesifikasi") String Spesifikasi,
+            @Field("jumlah") String jumlah,
+            @Field("harga") String harga
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/kurangStockSuspensi.php")
+    Call<ResponseModel> kurangSuspensi(
+            @Field("id") String kategoriId,
+            @Field("jumlahTotal") String jumlahTotal,
+            @Field("jumlahKurang") String jumlahKurang
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/tambahStockSuspensi.php")
+    Call<ResponseModel> tambahSuspensi(
+            @Field("id") String id,
+            @Field("jumlahTotal") String jumlahTotal,
+            @Field("jumlahTambah") String jumlahTambah
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/deleteSuspensi.php")
+    Call<ResponseModel> deleteSuspensi(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/updateSuspensi.php")
+    Call<ResponseModel> updateSuspensi(
+            @Field("id") String id,
+            @Field("spesifikasi") String Spesifikasi,
+            @Field("jumlah") String jumlah
+    );
+
+    @GET("velg/getMerek.php")
+    Call<ResponseModel> getMerekVelg();
+
+    @GET("velg/searchMerek.php")
+    Call<ResponseModel> searchMerekVelg();
+
+    @FormUrlEncoded
+    @POST("suspensi/insertMerekOriginal.php")
+    Call<ResponseModel> insertMerekOriginal(
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/insertMerekReplika.php")
+    Call<ResponseModel> insertMerekReplika(
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("velg/updateMerek.php")
+    Call<ResponseModel> updateMerekVelg(
+            @Field("id") String id,
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("velg/deleteMerk.php")
+    Call<ResponseModel> deleteMerkVelg(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("velg/getVelg.php")
+    Call<ResponseModel> insertVelg(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("velg/insertVelg.php")
+    Call<ResponseModel> insertVelg(
+            @Field("merekId") String merekId,
+            @Field("spesifikasi") String spesifikasi,
+            @Field("jumlah") String jumlah,
+            @Field("harga") String harga
+    );
+
+    @FormUrlEncoded
+    @POST("velg/kurangStokVelg.php")
+    Call<ResponseModel> kurangStockVelg(
+            @Field("id") String id,
+            @Field("jumlahTotal") String jumlahTotal,
+            @Field("jumlahKurang") String jumlahKurang
+    );
+
+    @FormUrlEncoded
+    @POST("velg/tambahgStokVelg.php")
+    Call<ResponseModel> tambahStockVelg(
+            @Field("id") String id,
+            @Field("jumlahTotal") String jumlahTotal,
+            @Field("jumlahTambah") String jumlahTambah
+    );
+
+
+
+
 
 }
+
+

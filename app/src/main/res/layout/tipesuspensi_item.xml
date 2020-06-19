@@ -25,13 +25,14 @@
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:layout_height="match_parent">
+
                 <TextView
+                    android:id="@+id/tv_tipesuspensi"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Air Sus"
-                    android:textStyle="bold"
                     android:textSize="20dp"
-                    android:id="@+id/tv_tipesuspensi"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -39,11 +40,12 @@
                 android:layout_width="0dp"
                 android:gravity="end"
                 android:layout_height="match_parent">
+
                 <ImageView
                     android:id="@+id/btnTambahTipe"
-                    android:layout_width="27dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="27dp"
-                    android:background="@drawable/ic_addmerek"/>
+                    android:background="@drawable/ic_addmerek" />
 
             </LinearLayout>
 

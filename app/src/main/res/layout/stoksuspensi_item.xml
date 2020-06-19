@@ -14,25 +14,21 @@
         android:weightSum="100"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_weight="80"
+            android:layout_weight="70"
             android:layout_width="0dp"
             android:orientation="vertical"
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Type"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <TextView
+                android:id="@+id/etSpesifikasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SPesifikasi"
                 android:textColor="#000000"
                 android:textSize="18sp" />
+
             <TextView
+                android:id="@+id/etHarga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Harga Barang"
@@ -40,6 +36,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/etJumlah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jumlah"
@@ -54,11 +51,27 @@
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:layout_weight="10">
+
             <ImageView
+                android:id="@+id/btnEdit"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
-                android:background="@drawable/ic_edit"
+                android:background="@drawable/ic_editstock"
                 />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="10">
+
+            <ImageView
+                android:id="@+id/btnUbahSuspensi"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:background="@drawable/ic_edit" />
 
         </LinearLayout>
 
@@ -69,6 +82,7 @@
             <ImageView
                 android:layout_width="33dp"
                 android:layout_height="33dp"
+                android:id="@+id/btnDelete"
                 android:background="@drawable/ic_delete"
                 />
 

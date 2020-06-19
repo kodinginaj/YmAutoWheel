@@ -12,9 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <activity android:name=".Ubah_stocksuspensi"></activity>
+        <activity android:name=".Tambah_stocksuspensi" />
+
         <activity android:name=".Tambah_stokvelg"></activity>
         <activity android:name=".Informasi_stokvelg" />
         <activity android:name=".VelgActivity" />
+
         <activity android:name=".Ubah_stockban" />
         <activity android:name=".notification" />
         <activity android:name=".Notification" />
