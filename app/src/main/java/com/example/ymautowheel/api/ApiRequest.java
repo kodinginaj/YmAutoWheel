@@ -221,4 +221,73 @@ public interface ApiRequest {
             @Field("spesifikasi") String Spesifikasi,
             @Field("jumlah") String jumlah
     );
+
+    @GET("velg/getMerek.php")
+    Call<ResponseModel> getMerekVelg();
+
+    @GET("velg/searchMerek.php")
+    Call<ResponseModel> searchMerekVelg();
+
+    @FormUrlEncoded
+    @POST("suspensi/insertMerekOriginal.php")
+    Call<ResponseModel> insertMerekOriginal(
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("suspensi/insertMerekReplika.php")
+    Call<ResponseModel> insertMerekReplika(
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("velg/updateMerek.php")
+    Call<ResponseModel> updateMerekVelg(
+            @Field("id") String id,
+            @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("velg/deleteMerk.php")
+    Call<ResponseModel> deleteMerkVelg(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("velg/getVelg.php")
+    Call<ResponseModel> insertVelg(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("velg/insertVelg.php")
+    Call<ResponseModel> insertVelg(
+            @Field("merekId") String merekId,
+            @Field("spesifikasi") String spesifikasi,
+            @Field("jumlah") String jumlah,
+            @Field("harga") String harga
+    );
+
+    @FormUrlEncoded
+    @POST("velg/kurangStokVelg.php")
+    Call<ResponseModel> kurangStockVelg(
+            @Field("id") String id,
+            @Field("jumlahTotal") String jumlahTotal,
+            @Field("jumlahKurang") String jumlahKurang
+    );
+
+    @FormUrlEncoded
+    @POST("velg/tambahgStokVelg.php")
+    Call<ResponseModel> tambahStockVelg(
+            @Field("id") String id,
+            @Field("jumlahTotal") String jumlahTotal,
+            @Field("jumlahTambah") String jumlahTambah
+    );
+
+
+
+
+
 }
+
+
