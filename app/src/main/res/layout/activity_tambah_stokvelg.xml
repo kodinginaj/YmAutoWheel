@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Tambah_stockban">
+    tools:context=".Tambah_stokvelg">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +54,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TAMBAH BAN"
+            android:text="TAMBAH VELG"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -66,10 +67,21 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="UK" />
+            android:text="Type" />
 
         <EditText
-            android:id="@+id/etUkuranF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/textareaputih" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spek" />
+
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -80,19 +92,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Jumlah" />
-
-        <EditText
-            android:id="@+id/etJumlahF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/textareaputih" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Expired" />
 
         <EditText
             android:id="@+id/etKadaluarsaF"
@@ -108,7 +107,6 @@
             android:text="Harga Barang" />
 
         <EditText
-            android:id="@+id/etHargaF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

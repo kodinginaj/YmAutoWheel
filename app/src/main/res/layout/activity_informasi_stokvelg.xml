@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Informasi_stokban">
+    tools:context=".Informasi_stokvelg">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +25,6 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="start"
-                android:id="@+id/ivBackStockBan"
                 android:src="@drawable/ic_back"/>
 
             <TextView
@@ -68,9 +68,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Ban Semi Slick"
+                    android:text="OZ Racing"
                     android:textSize="18sp"
-                    android:id="@+id/tvBan"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -85,18 +84,15 @@
                     android:background="@drawable/button"
                     android:padding="5dp"
                     android:textSize="14sp"
-                    android:id="@+id/btnTambah"
                     android:textColor="@color/Putih"/>
             </LinearLayout>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tampilStokBan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp"
             android:scrollbars="vertical">
-
 
 
         </androidx.recyclerview.widget.RecyclerView>

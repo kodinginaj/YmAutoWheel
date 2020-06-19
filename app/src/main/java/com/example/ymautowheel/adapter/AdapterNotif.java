@@ -1,12 +1,14 @@
 package com.example.ymautowheel.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ymautowheel.BanActivity;
 import com.example.ymautowheel.R;
 import com.example.ymautowheel.model.MerekBanModel;
 import com.example.ymautowheel.model.NotifikasiModel;
@@ -68,6 +70,29 @@ public class AdapterNotif extends RecyclerView.Adapter<AdapterNotif.TampungData>
             tJudul = itemView.findViewById(R.id.tv_judul);
             tKeterangan = itemView.findViewById(R.id.tv_keterangan);
             tStock = itemView.findViewById(R.id.tv_stock);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NotifikasiModel notifikasiModel = mList.get(getAdapterPosition());
+
+                    if (notifikasiModel.getJenis().equals("Ban")){
+                        Intent pindah = new Intent(ctx, BanActivity.class);
+                        ctx.startActivity(pindah);
+                    }
+
+                    if(notifikasiModel.getJenis().equals("Suspensi")){
+
+                    }
+
+                    if(notifikasiModel.getJenis().equals("Velg")){
+
+                    }
+
+
+
+                }
+            });
 
 
 

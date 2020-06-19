@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".VelgActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:src="@drawable/ic_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VELG"
+                android:textColor="@color/Putih"
+                android:textSize="25dp"
+                android:layout_gravity="center"
+                android:id="@+id/toolbar_title" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_margin="15dp"
+            android:id="@+id/search"
+            android:background="@drawable/bg_search"
+            android:layout_height="40dp"/>
+
+        <LinearLayout
+            android:id="@+id/velgOriginal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:background="@drawable/bg_merekban"
+                android:layout_height="55dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_weight="90"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Velg Original"
+                            android:textStyle="bold"
+                            android:textSize="20dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="10"
+                        android:layout_width="0dp"
+                        android:gravity="end"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="27dp"
+                            android:layout_height="27dp"
+                            android:background="@drawable/ic_addmerek"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/velgReplika"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:background="@drawable/bg_merekban"
+                android:layout_height="55dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_weight="90"
+                        android:layout_width="0dp"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Velg Replika"
+                            android:textStyle="bold"
+                            android:textSize="20dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="10"
+                        android:layout_width="0dp"
+                        android:gravity="end"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/btnTambahTipe"
+                            android:layout_width="27dp"
+                            android:layout_height="27dp"
+                            android:background="@drawable/ic_addmerek"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

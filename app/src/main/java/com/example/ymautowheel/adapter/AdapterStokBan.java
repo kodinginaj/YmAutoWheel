@@ -1,5 +1,6 @@
 package com.example.ymautowheel.adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +30,8 @@ import com.example.ymautowheel.model.BanModel;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.TipeBanModel;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,10 +42,12 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
 
     private Context ctx;
     private List<BanModel> listBan;
+    private String nama ;
 
-    public AdapterStokBan(Context ctx, List<BanModel> listBan) {
+    public AdapterStokBan(Context ctx, List<BanModel> listBan, String nama) {
         this.ctx = ctx;
         this.listBan = listBan;
+        this.nama = nama;
     }
 
     @NonNull
@@ -57,10 +62,10 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
     public void onBindViewHolder(@NonNull TampungData holder, int position) {
         BanModel dataBan = listBan.get(position);
 
-        holder.etExpired.setText(dataBan.getKadaluarsa());
-        holder.etJumlah.setText(dataBan.getJumlah());
-        holder.etUkuran.setText(dataBan.getUkuran());
-        holder.etHarga.setText(dataBan.getHarga());
+        holder.etExpired.setText("Exp : "+dataBan.getKadaluarsa());
+        holder.etJumlah.setText("Stock : "+dataBan.getJumlah());
+        holder.etUkuran.setText("UK : "+dataBan.getUkuran());
+        holder.etHarga.setText(Rupiah(Double.parseDouble(dataBan.getHarga())));
 
         holder.dataBan = dataBan;
 
@@ -105,6 +110,7 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
                     pindah.putExtra("Expired",dataBan.getKadaluarsa());
                     pindah.putExtra("idMerek", dataBan.getMerek_ban_id());
                     pindah.putExtra("idTipe", dataBan.getTipe_ban_id());
+                    pindah.putExtra("nama", nama);
                     ctx.startActivity(pindah);
                 }
             });
@@ -154,6 +160,14 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
 
                             ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
                             Call<ResponseModel> tambahBan = api.tambahBan(id, jumlahTotal, jumlahUbah);
+
+                            final ProgressDialog progressDialog;
+                            progressDialog = new ProgressDialog(ctx);
+                            progressDialog.setMessage("Mohon tunggu....");
+                            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                            progressDialog.setCancelable(false);
+                            progressDialog.show();
+
                             tambahBan.enqueue(new Callback<ResponseModel>() {
                                 @Override
                                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
@@ -161,17 +175,29 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
                                     Intent pindah = new Intent(ctx, Informasi_stokban.class);
                                     pindah.putExtra("idMerek", dataBan.getMerek_ban_id());
                                     pindah.putExtra("idTipe", dataBan.getTipe_ban_id());
+                                    pindah.putExtra("nama", nama);
+                                    pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    progressDialog.dismiss();
                                     ctx.startActivity(pindah);
                                 }
 
                                 @Override
                                 public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                    progressDialog.dismiss();
                                     Toast.makeText(ctx, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }else if(cbKurang.isChecked()){
                             ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
                             Call<ResponseModel> kurangBan = api.kurangBan(id, jumlahTotal, jumlahUbah);
+
+                            final ProgressDialog progressDialog;
+                            progressDialog = new ProgressDialog(ctx);
+                            progressDialog.setMessage("Mohon tunggu....");
+                            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                            progressDialog.setCancelable(false);
+                            progressDialog.show();
+
                             kurangBan.enqueue(new Callback<ResponseModel>() {
                                 @Override
                                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
@@ -179,11 +205,15 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
                                     Intent pindah = new Intent(ctx, Informasi_stokban.class);
                                     pindah.putExtra("idMerek", dataBan.getMerek_ban_id());
                                     pindah.putExtra("idTipe", dataBan.getTipe_ban_id());
+                                    pindah.putExtra("nama", nama);
+                                    pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    progressDialog.dismiss();
                                     ctx.startActivity(pindah);
                                 }
 
                                 @Override
                                 public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                    progressDialog.dismiss();
                                     Toast.makeText(ctx, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -213,6 +243,14 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
 
                     ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
                     Call<ResponseModel> deleteBan = api.deleteBan(id);
+
+                    final ProgressDialog progressDialog;
+                    progressDialog = new ProgressDialog(ctx);
+                    progressDialog.setMessage("Mohon tunggu....");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+
                     deleteBan.enqueue(new Callback<ResponseModel>() {
                         @Override
                         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
@@ -220,11 +258,14 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
                             Intent pindah = new Intent(ctx, Informasi_stokban.class);
                             pindah.putExtra("idMerek",dataBan.getMerek_ban_id());
                             pindah.putExtra("idTipe",dataBan.getTipe_ban_id());
+                            pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            progressDialog.dismiss();
                             ctx.startActivity(pindah);
                         }
 
                         @Override
                         public void onFailure(Call<ResponseModel> call, Throwable t) {
+                            progressDialog.dismiss();
                             Toast.makeText(ctx, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -239,5 +280,20 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
             AlertDialog alert = builder.create();
             alert.show();
         }
+    }
+
+    public String Rupiah(double rupiah){
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+
+        String rp = kursIndonesia.format(rupiah);
+
+        return rp;
     }
 }
