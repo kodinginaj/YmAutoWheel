@@ -103,25 +103,30 @@ public class VelgActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-//                if (newText.isEmpty()){
-//                    ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
-//                    Call<ResponseModelBan> getMerekTipe = api.getMerekTipe();
-//                    getMerekTipe.enqueue(new Callback<ResponseModelBan>() {
-//                        @Override
-//                        public void onResponse(Call<ResponseModelBan> call, Response<ResponseModelBan> response) {
-//                            listBan = response.body().getMerek_bans();
-//
-//                            adapterBan = new AdapterMerekBan(BanActivity.this, listBan);
-//                            tampilBan.setAdapter(adapterBan);
-//                            adapterBan.notifyDataSetChanged();
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<ResponseModelBan> call, Throwable t) {
-//                            Toast.makeText(BanActivity.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
+                if (newText.isEmpty()){
+                    ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
+                    Call<ResponseModelVelg> getMerekVelg = api.getMerekVelg();
+                    getMerekVelg.enqueue(new Callback<ResponseModelVelg>() {
+                        @Override
+                        public void onResponse(Call<ResponseModelVelg> call, Response<ResponseModelVelg> response) {
+                            listKategoriO = response.body().getVelg_originals();
+                            listKategoriR = response.body().getVelg_replikas();
+
+                            adapterVelgO = new AdapterKategoriVelg(VelgActivity.this, listKategoriO);
+                            tampilVelgO.setAdapter(adapterVelgO);
+                            adapterVelgO.notifyDataSetChanged();
+
+                            adapterVelgR = new AdapterKategoriVelg(VelgActivity.this, listKategoriR);
+                            tampilVelgR.setAdapter(adapterVelgR);
+                            adapterVelgR.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseModelVelg> call, Throwable t) {
+                            Toast.makeText(VelgActivity.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
                 return true;
             }
         });
@@ -164,23 +169,11 @@ public class VelgActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseModelVelg> call, Response<ResponseModelVelg> response) {
                 listKategoriO = response.body().getVelg_originals();
+                listKategoriR = response.body().getVelg_replikas();
 
                 adapterVelgO = new AdapterKategoriVelg(VelgActivity.this, listKategoriO);
                 tampilVelgO.setAdapter(adapterVelgO);
                 adapterVelgO.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseModelVelg> call, Throwable t) {
-                Toast.makeText(VelgActivity.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        Call<ResponseModelVelg> getMerek = api.getMerekVelg();
-        getMerek.enqueue(new Callback<ResponseModelVelg>() {
-            @Override
-            public void onResponse(Call<ResponseModelVelg> call, Response<ResponseModelVelg> response) {
-                listKategoriR = response.body().getVelg_replikas();
 
                 adapterVelgR = new AdapterKategoriVelg(VelgActivity.this, listKategoriR);
                 tampilVelgR.setAdapter(adapterVelgR);
@@ -192,6 +185,23 @@ public class VelgActivity extends AppCompatActivity {
                 Toast.makeText(VelgActivity.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
             }
         });
+
+//        Call<ResponseModelVelg> getMerek = api.getMerekVelg();
+//        getMerek.enqueue(new Callback<ResponseModelVelg>() {
+//            @Override
+//            public void onResponse(Call<ResponseModelVelg> call, Response<ResponseModelVelg> response) {
+//                listKategoriR = response.body().getVelg_replikas();
+//
+//                adapterVelgR = new AdapterKategoriVelg(VelgActivity.this, listKategoriR);
+//                tampilVelgR.setAdapter(adapterVelgR);
+//                adapterVelgR.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseModelVelg> call, Throwable t) {
+//                Toast.makeText(VelgActivity.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void DialogForm() {

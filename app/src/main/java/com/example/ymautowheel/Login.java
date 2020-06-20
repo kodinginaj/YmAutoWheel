@@ -24,9 +24,9 @@ import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
 
-    EditText etEmail, etPassword;
-    TextView tvRegister;
-    Button btnLogin;
+    private EditText etEmail, etPassword;
+    private TextView tRegister;
+    private Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,8 @@ public class Login extends AppCompatActivity {
             startActivity(pindah);
         }
 
-        tvRegister = findViewById(R.id.tvRegister);
-        tvRegister.setOnClickListener(new View.OnClickListener() {
+        tRegister = findViewById(R.id.tvRegister);
+        tRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pindah = new Intent(Login.this,Register.class);

@@ -5,8 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retroserver {
 
-    private static final String base_url = "http://192.168.100.6/YMautowheels/api/";
-    String url = "http://192.168.100.6/YMautowheels/api/";
+    private static final String base_url = "http://192.168.100.63/YmAutowheelApi/api/";
+    String url = "http://192.168.100.63/YmAutowheelApi/api/";
 
 
 
