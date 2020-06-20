@@ -26,6 +26,7 @@ import com.example.ymautowheel.model.MerekSuspensiModel;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.ResponseModelBan;
 import com.example.ymautowheel.model.ResponseModelSuspensi;
+import com.example.ymautowheel.util.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +112,12 @@ public class SuspensiActivity extends AppCompatActivity {
                 DialogForm();
             }
         });
+
+        Session session = new Session(SuspensiActivity.this);
+        if(session.getRole().equals("0")){
+            ivNotif.setVisibility(View.GONE);
+        }
+
 
         tampilSuspensi = findViewById(R.id.kategosiSuspensi);
         layoutSuspensi = new LinearLayoutManager(SuspensiActivity.this, RecyclerView.VERTICAL, false);

@@ -4,6 +4,7 @@ import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.ResponseModelBan;
 import com.example.ymautowheel.model.ResponseModelNotifikasi;
 import com.example.ymautowheel.model.ResponseModelSuspensi;
+import com.example.ymautowheel.model.ResponseModelVelg;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -219,23 +220,26 @@ public interface ApiRequest {
     Call<ResponseModel> updateSuspensi(
             @Field("id") String id,
             @Field("spesifikasi") String Spesifikasi,
-            @Field("jumlah") String jumlah
+            @Field("harga") String harga
     );
 
     @GET("velg/getMerek.php")
-    Call<ResponseModel> getMerekVelg();
-
-    @GET("velg/searchMerek.php")
-    Call<ResponseModel> searchMerekVelg();
+    Call<ResponseModelVelg> getMerekVelg();
 
     @FormUrlEncoded
-    @POST("suspensi/insertMerekOriginal.php")
+    @POST("velg/searchMerek.php")
+    Call<ResponseModelVelg> searchMerekVelg(
+            @Field("keyword") String Query
+    );
+
+    @FormUrlEncoded
+    @POST("velg/insertMerekOriginal.php")
     Call<ResponseModel> insertMerekOriginal(
             @Field("nama") String nama
     );
 
     @FormUrlEncoded
-    @POST("suspensi/insertMerekReplika.php")
+    @POST("velg/insertMerekReplika.php")
     Call<ResponseModel> insertMerekReplika(
             @Field("nama") String nama
     );
@@ -248,20 +252,21 @@ public interface ApiRequest {
     );
 
     @FormUrlEncoded
-    @POST("velg/deleteMerk.php")
+    @POST("velg/deleteMerek.php")
     Call<ResponseModel> deleteMerkVelg(
             @Field("id") String id
     );
 
     @FormUrlEncoded
     @POST("velg/getVelg.php")
-    Call<ResponseModel> insertVelg(
-            @Field("id") String id
+    Call<ResponseModelVelg> getVelg(
+            @Field("merekId") String merekId
     );
 
     @FormUrlEncoded
     @POST("velg/insertVelg.php")
     Call<ResponseModel> insertVelg(
+            @Field("kategoriId") String kategoriId,
             @Field("merekId") String merekId,
             @Field("spesifikasi") String spesifikasi,
             @Field("jumlah") String jumlah,
@@ -269,7 +274,15 @@ public interface ApiRequest {
     );
 
     @FormUrlEncoded
-    @POST("velg/kurangStokVelg.php")
+    @POST("velg/updateVelg.php")
+    Call<ResponseModel> updateVelg(
+            @Field("id") String id,
+            @Field("spesifikasi") String spesifikasi,
+            @Field("harga") String harga
+    );
+
+    @FormUrlEncoded
+    @POST("velg/kurangStockVelg.php")
     Call<ResponseModel> kurangStockVelg(
             @Field("id") String id,
             @Field("jumlahTotal") String jumlahTotal,
@@ -277,17 +290,18 @@ public interface ApiRequest {
     );
 
     @FormUrlEncoded
-    @POST("velg/tambahgStokVelg.php")
+    @POST("velg/tambahStockVelg.php")
     Call<ResponseModel> tambahStockVelg(
             @Field("id") String id,
             @Field("jumlahTotal") String jumlahTotal,
             @Field("jumlahTambah") String jumlahTambah
     );
 
-
-
-
-
+    @FormUrlEncoded
+    @POST("velg/deleteVelg.php")
+    Call<ResponseModel> deleteVelg(
+            @Field("id") String id
+    );
 }
 
 

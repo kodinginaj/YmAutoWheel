@@ -21,7 +21,9 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer">
+
         <LinearLayout
+            android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

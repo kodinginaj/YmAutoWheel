@@ -16,6 +16,10 @@ public class Session {
         sharedPreferences.edit().putString("id", id).apply();
     }
 
+    public void setRole(String role) {
+        sharedPreferences.edit().putString("role", role).apply();
+    }
+
     public void setNama(String nama) {
         sharedPreferences.edit().putString("nama", nama).apply();
     }
@@ -34,6 +38,10 @@ public class Session {
 
     public String getNama() {
         return sharedPreferences.getString("nama", null);
+    }
+
+    public String getRole() {
+        return sharedPreferences.getString("role", null);
     }
 
     public void logout() {

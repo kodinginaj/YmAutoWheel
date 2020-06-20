@@ -18,6 +18,7 @@ import com.example.ymautowheel.api.ApiRequest;
 import com.example.ymautowheel.api.Retroserver;
 import com.example.ymautowheel.model.ResponseModelSuspensi;
 import com.example.ymautowheel.model.SuspensiModel;
+import com.example.ymautowheel.util.Session;
 
 import java.util.List;
 
@@ -75,6 +76,11 @@ public class Informasi_stoksuspensi extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
+        Session session = new Session(Informasi_stoksuspensi.this);
+        if(session.getRole().equals("0")){
+            btnTambahSuspensi.setVisibility(View.GONE);
+        }
+
         ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
         Call<ResponseModelSuspensi> getSuspensi = api.getSuspensi(kategoriId,merekId);
         getSuspensi.enqueue(new Callback<ResponseModelSuspensi>() {
@@ -83,7 +89,7 @@ public class Informasi_stoksuspensi extends AppCompatActivity {
                 progressDialog.dismiss();
                 listSuspensi = response.body().getSuspensis();
 
-                adapterSuspensi = new AdapterSuspensi(Informasi_stoksuspensi.this, listSuspensi);
+                adapterSuspensi = new AdapterSuspensi(Informasi_stoksuspensi.this, listSuspensi, nama);
                 tampilSuspensi.setAdapter(adapterSuspensi);
                 adapterSuspensi.notifyDataSetChanged();
             }

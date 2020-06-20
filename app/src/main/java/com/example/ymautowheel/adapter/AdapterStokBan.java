@@ -29,6 +29,7 @@ import com.example.ymautowheel.api.Retroserver;
 import com.example.ymautowheel.model.BanModel;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.TipeBanModel;
+import com.example.ymautowheel.util.Session;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -129,6 +130,14 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
                     DialogForm();
                 }
             });
+
+            Session session = new Session(ctx);
+            if(session.getRole().equals("0")){
+                btnDelete.setVisibility(View.GONE);
+                btnEdit.setVisibility(View.GONE);
+                btnUbahBan.setVisibility(View.GONE);
+            }
+
         }
 
         private void DialogForm2() {
@@ -258,6 +267,7 @@ public class AdapterStokBan extends RecyclerView.Adapter<AdapterStokBan.TampungD
                             Intent pindah = new Intent(ctx, Informasi_stokban.class);
                             pindah.putExtra("idMerek",dataBan.getMerek_ban_id());
                             pindah.putExtra("idTipe",dataBan.getTipe_ban_id());
+                            pindah.putExtra("nama", nama);
                             pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             progressDialog.dismiss();
                             ctx.startActivity(pindah);

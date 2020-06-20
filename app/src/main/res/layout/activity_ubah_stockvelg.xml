@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Ubah_stocksuspensi">
+    tools:context=".Tambah_stokvelg">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +25,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="start"
-                android:id="@+id/ivBack"
+                android:id="@+id/ivBackTambahStockBan"
                 android:src="@drawable/ic_back"/>
 
             <TextView
@@ -53,7 +54,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="UBAH SUSPENSI"
+            android:text="UBAH VELG"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -63,31 +64,55 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/text" />
 
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Type" />-->
+
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="@drawable/textareaputih" />-->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Spesifikasi" />
 
         <EditText
-            android:id="@+id/etSpek"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
+            android:id="@+id/etSpesifikasi"
             android:background="@drawable/textareaputih" />
 
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Jumlah" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/etJumlah"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="@drawable/textareaputih" />-->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Harga" />
+            android:text="Harga Barang" />
 
         <EditText
-            android:id="@+id/etHarga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
+            android:id="@+id/etHarga"
             android:background="@drawable/textareaputih" />
 
         <Button

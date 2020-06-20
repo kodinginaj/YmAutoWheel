@@ -64,17 +64,17 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/text" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Type" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Type" />-->
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/textareaputih" />
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="@drawable/textareaputih" />-->
 
         <TextView
             android:layout_width="match_parent"
@@ -85,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:id="@+id/etSpesifikasi"
             android:layout_marginBottom="10dp"
             android:background="@drawable/textareaputih" />
 
@@ -94,7 +95,7 @@
             android:text="Jumlah" />
 
         <EditText
-            android:id="@+id/etKadaluarsaF"
+            android:id="@+id/etJumlah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -111,6 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
+            android:id="@+id/etHarga"
             android:background="@drawable/textareaputih" />
 
         <Button
