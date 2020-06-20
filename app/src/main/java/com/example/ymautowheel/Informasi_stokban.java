@@ -19,6 +19,7 @@ import com.example.ymautowheel.api.Retroserver;
 import com.example.ymautowheel.model.BanModel;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.ResponseModelBan;
+import com.example.ymautowheel.util.Session;
 
 import java.util.List;
 
@@ -75,6 +76,12 @@ public class Informasi_stokban extends AppCompatActivity {
                 startActivity(pindah);
             }
         });
+
+        Session session = new Session(Informasi_stokban.this);
+        if(session.getRole().equals("0")){
+            btnTambah.setVisibility(View.GONE);
+        }
+
 
         ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
         Call<ResponseModelBan> getBan = api.getBan(idMerek,idTipe);

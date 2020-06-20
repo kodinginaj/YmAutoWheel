@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.ymautowheel.util.Session;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -18,8 +21,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
     private ImageView iNotif;
+    TextView btnLogout;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -36,6 +42,18 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+        btnLogout = findViewById(R.id.logoutDrawer);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Session session = new Session(MainActivity.this);
+                session.logout();
+
+                Intent pindah = new Intent(MainActivity.this, Login.class);
+                startActivity(pindah);
+            }
+        });
 
         iNotif = (ImageView)findViewById(R.id.ivNotif);
         iNotif.setOnClickListener(new View.OnClickListener() {
@@ -71,11 +89,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        navigationView.getMenu().findItem(R.id.nav_velg).setOnMenuItemClickListener(menuItem -> {
-//            Intent pindah = new Intent(MainActivity.this, Velg.class);
-//            startActivity(pindah);
-//            return true;
-//        });
+        navigationView.getMenu().findItem(R.id.nav_velg).setOnMenuItemClickListener(menuItem -> {
+            Intent pindah = new Intent(MainActivity.this, VelgActivity.class);
+            startActivity(pindah);
+            return true;
+        });
+
     }
 
     @Override

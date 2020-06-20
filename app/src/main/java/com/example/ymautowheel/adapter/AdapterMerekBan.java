@@ -25,6 +25,7 @@ import com.example.ymautowheel.api.Retroserver;
 import com.example.ymautowheel.model.MerekBanModel;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.TipeBanModel;
+import com.example.ymautowheel.util.Session;
 
 import org.w3c.dom.Text;
 
@@ -118,6 +119,13 @@ public class AdapterMerekBan extends RecyclerView.Adapter<AdapterMerekBan.Tampun
                     DialogForm2();
                 }
             });
+
+            Session session = new Session(ctx);
+            if(session.getRole().equals("0")){
+                btnDelete.setVisibility(View.GONE);
+                btnTambahTipe.setVisibility(View.GONE);
+                btnUbahMerek.setVisibility(View.GONE);
+            }
 
 
             tampilTipeBan = v.findViewById(R.id.rvTipeBan);

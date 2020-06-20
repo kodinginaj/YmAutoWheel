@@ -85,6 +85,7 @@ public class Login extends AppCompatActivity {
                                 session.setId(userModel.getId());
                                 session.setNama(userModel.getNama());
                                 session.setEmail(userModel.getEmail());
+                                session.setRole(userModel.getRole());
 
                                 Intent pindah = new Intent(Login.this, MainActivity.class);
                                 startActivity(pindah);

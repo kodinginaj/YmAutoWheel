@@ -27,6 +27,7 @@ import com.example.ymautowheel.model.MerekBanModel;
 import com.example.ymautowheel.model.MerekSuspensiModel;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.TipeBanModel;
+import com.example.ymautowheel.util.Session;
 
 import java.util.List;
 
@@ -118,6 +119,14 @@ public class AdapterKategoriSuspensi extends RecyclerView.Adapter<AdapterKategor
                     DialogForm2();
                 }
             });
+
+            Session session = new Session(ctx);
+            if(session.getRole().equals("0")){
+                btnDelete.setVisibility(View.GONE);
+                btnTambahTipe.setVisibility(View.GONE);
+                btnUbahMerek.setVisibility(View.GONE);
+            }
+
 
 
             tampilMerekSuspensi = v.findViewById(R.id.merekSuspensi);

@@ -10,25 +10,26 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_gravity="end"
-        android:paddingTop="15dp"
-        android:paddingEnd="15dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp">
+
         <ImageView
 
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:background="@drawable/ic_admin"/>
+            android:background="@drawable/ic_admin" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="YM Admin 01"
-            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:text="Nama"
+            android:id="@+id/tvNama"
             android:textColor="@color/YMAutoWheel"
-            android:paddingTop="8dp"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
     

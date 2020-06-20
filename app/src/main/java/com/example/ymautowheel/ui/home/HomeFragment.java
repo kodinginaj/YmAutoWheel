@@ -13,10 +13,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.ymautowheel.R;
+import com.example.ymautowheel.util.Session;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    TextView etNama;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,6 +32,10 @@ public class HomeFragment extends Fragment {
 //                textView.setText(s);
             }
         });
+
+        Session session = new Session(getActivity());
+        etNama = root.findViewById(R.id.tvNama);
+        etNama.setText(session.getNama());
         return root;
     }
 }

@@ -18,68 +18,68 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ymautowheel.Informasi_stokban;
 import com.example.ymautowheel.Informasi_stoksuspensi;
+import com.example.ymautowheel.Informasi_stokvelg;
 import com.example.ymautowheel.R;
-import com.example.ymautowheel.Ubah_stockban;
 import com.example.ymautowheel.Ubah_stocksuspensi;
+import com.example.ymautowheel.Ubah_stockvelg;
+import com.example.ymautowheel.VelgActivity;
 import com.example.ymautowheel.api.ApiRequest;
 import com.example.ymautowheel.api.Retroserver;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.SuspensiModel;
+import com.example.ymautowheel.model.VelgModel;
 import com.example.ymautowheel.util.Session;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.TampungData> {
+public class AdapterVelg extends RecyclerView.Adapter<AdapterVelg.TampungData> {
 
     private Context ctx;
-    private List<SuspensiModel> listSuspensi;
+    private List<VelgModel> listVelg;
     String nama;
 
-    public AdapterSuspensi(Context ctx, List<SuspensiModel> listSuspensi, String nama) {
+    public AdapterVelg(Context ctx, List<VelgModel> listVelg, String nama) {
         this.ctx = ctx;
-        this.listSuspensi = listSuspensi;
+        this.listVelg = listVelg;
         this.nama = nama;
     }
 
     @NonNull
     @Override
     public TampungData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.stoksuspensi_item, parent, false);
+        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.stokvelg_item, parent, false);
         TampungData tampungData = new TampungData(layout);
         return tampungData;
     }
 
     @Override
     public void onBindViewHolder(@NonNull TampungData holder, int position) {
-        SuspensiModel dataSuspensi = listSuspensi.get(position);
+        VelgModel dataVelg = listVelg.get(position);
 
-        holder.etSpesifikasi.setText(dataSuspensi.getSpesifikasi());
-        holder.etJumlah.setText("Stock : "+dataSuspensi.getJumlah());
-        holder.etHarga.setText(Rupiah(Double.parseDouble(dataSuspensi.getHarga())));
+        holder.etSpek.setText(dataVelg.getSpesifikasi());
+        holder.etJumlah.setText(dataVelg.getJumlah());
+        holder.etHarga.setText(dataVelg.getHarga());
 
-        holder.dataSuspensi = dataSuspensi;
+        holder.dataVelg = dataVelg;
 
     }
 
     @Override
     public int getItemCount() {
-        return listSuspensi.size();
+        return listVelg.size();
     }
 
 
     class TampungData extends RecyclerView.ViewHolder {
 
-        TextView etSpesifikasi,etJumlah,etHarga;
-        ImageView btnDelete, btnEdit, btnUbahBan;
-        SuspensiModel dataSuspensi;
+        TextView etTipe, etSpek, etJumlah, etHarga;
+        ImageView btnDelete, btnEdit, btnUbah;
+        VelgModel dataVelg;
         EditText etUbah;
 
         RadioButton cbTambah, cbKurang;
@@ -91,21 +91,22 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
         private TampungData(View v) {
             super(v);
 
-            etSpesifikasi = v.findViewById(R.id.etSpesifikasi);
+//            etTipe = v.findViewById(R.id.etTipe);
             etJumlah = v.findViewById(R.id.etJumlah);
             etHarga = v.findViewById(R.id.etHarga);
+            etSpek = v.findViewById(R.id.etSpek);
+
             btnEdit = v.findViewById(R.id.btnEdit);
 
-            btnUbahBan = v.findViewById(R.id.btnUbahSuspensi);
-            btnUbahBan.setOnClickListener(new View.OnClickListener() {
+            btnUbah = v.findViewById(R.id.btnUbah);
+            btnUbah.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent pindah = new Intent(ctx, Ubah_stocksuspensi.class);
-                    pindah.putExtra("Id",dataSuspensi.getId());
-                    pindah.putExtra("Spesifikasi",dataSuspensi.getSpesifikasi());
-                    pindah.putExtra("Harga",dataSuspensi.getHarga());
-                    pindah.putExtra("MerekId", dataSuspensi.getMerek_suspensi_id());
-                    pindah.putExtra("KategoriId", dataSuspensi.getKategori_suspensi_id());
+                    Intent pindah = new Intent(ctx, Ubah_stockvelg.class);
+                    pindah.putExtra("Id", dataVelg.getId());
+                    pindah.putExtra("Spesifikasi", dataVelg.getSpesifikasi());
+                    pindah.putExtra("Harga", dataVelg.getHarga());
+                    pindah.putExtra("merekId", dataVelg.getMerek_velg_id());
                     pindah.putExtra("nama",nama);
                     ctx.startActivity(pindah);
                 }
@@ -130,7 +131,7 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
             if(session.getRole().equals("0")){
                 btnDelete.setVisibility(View.GONE);
                 btnEdit.setVisibility(View.GONE);
-                btnUbahBan.setVisibility(View.GONE);
+                btnUbah.setVisibility(View.GONE);
             }
 
         }
@@ -138,7 +139,7 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
         private void DialogForm2() {
             dialog = new AlertDialog.Builder(ctx);
             inflater = LayoutInflater.from(ctx);
-            dialogView = inflater.inflate(R.layout.model_stocksuspensi, null);
+            dialogView = inflater.inflate(R.layout.modal_stockvelg, null);
             dialog.setView(dialogView);
             dialog.setCancelable(true);
 
@@ -153,8 +154,8 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    String id = dataSuspensi.getId();
-                    String jumlahTotal = dataSuspensi.getJumlah();
+                    String id = dataVelg.getId();
+                    String jumlahTotal = dataVelg.getJumlah();
                     String jumlahUbah = etUbah.getText().toString();
 
                     if (!etUbah.getText().toString().isEmpty()) {
@@ -169,15 +170,14 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
                             progressDialog.show();
 
                             ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
-                            Call<ResponseModel> tambahSuspensi = api.tambahSuspensi(id, jumlahTotal, jumlahUbah);
-                            tambahSuspensi.enqueue(new Callback<ResponseModel>() {
+                            Call<ResponseModel> tambahStockVelg = api.tambahStockVelg(id, jumlahTotal, jumlahUbah);
+                            tambahStockVelg.enqueue(new Callback<ResponseModel>() {
                                 @Override
                                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                                     progressDialog.dismiss();
                                     Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                                    Intent pindah = new Intent(ctx, Informasi_stoksuspensi.class);
-                                    pindah.putExtra("kategoriId", dataSuspensi.getKategori_suspensi_id());
-                                    pindah.putExtra("merekId", dataSuspensi.getMerek_suspensi_id());
+                                    Intent pindah = new Intent(ctx, Informasi_stokvelg.class);
+                                    pindah.putExtra("idKategori", dataVelg.getMerek_velg_id());
                                     pindah.putExtra("nama",nama);
                                     pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     ctx.startActivity(pindah);
@@ -189,7 +189,7 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
                                     progressDialog.dismiss();
                                 }
                             });
-                        }else if(cbKurang.isChecked()){
+                        } else if (cbKurang.isChecked()) {
                             final ProgressDialog progressDialog;
                             progressDialog = new ProgressDialog(ctx);
                             progressDialog.setMessage("Mohon tunggu...");
@@ -198,15 +198,14 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
                             progressDialog.show();
 
                             ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
-                            Call<ResponseModel> kurangSuspensi = api.kurangSuspensi(id, jumlahTotal, jumlahUbah);
-                            kurangSuspensi.enqueue(new Callback<ResponseModel>() {
+                            Call<ResponseModel> kurangStockVelg = api.kurangStockVelg(id, jumlahTotal, jumlahUbah);
+                            kurangStockVelg.enqueue(new Callback<ResponseModel>() {
                                 @Override
                                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                                     Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
-                                    Intent pindah = new Intent(ctx, Informasi_stoksuspensi.class);
-                                    pindah.putExtra("kategoriId", dataSuspensi.getKategori_suspensi_id());
-                                    pindah.putExtra("merekId", dataSuspensi.getMerek_suspensi_id());
+                                    Intent pindah = new Intent(ctx, Informasi_stokvelg.class);
+                                    pindah.putExtra("idKategori", dataVelg.getMerek_velg_id());
                                     pindah.putExtra("nama",nama);
                                     pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     ctx.startActivity(pindah);
@@ -236,11 +235,11 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
         private void DialogForm() {
             AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
             builder.setCancelable(false);
-            builder.setMessage("Apakah anda yakin untuk menghapus suspensi?");
+            builder.setMessage("Apakah anda yakin untuk menghapus velg?");
             builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String id = dataSuspensi.getId();
+                    String id = dataVelg.getId();
 
                     final ProgressDialog progressDialog;
                     progressDialog = new ProgressDialog(ctx);
@@ -250,15 +249,15 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
                     progressDialog.show();
 
                     ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
-                    Call<ResponseModel> deleteSuspensi = api.deleteSuspensi(id);
-                    deleteSuspensi.enqueue(new Callback<ResponseModel>() {
+                    Call<ResponseModel> deleteVelg = api.deleteVelg(id);
+                    deleteVelg.enqueue(new Callback<ResponseModel>() {
                         @Override
                         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                             Toast.makeText(ctx, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
-                            Intent pindah = new Intent(ctx, Informasi_stoksuspensi.class);
-                            pindah.putExtra("kategoriId", dataSuspensi.getKategori_suspensi_id());
-                            pindah.putExtra("merekId", dataSuspensi.getMerek_suspensi_id());
+                            Log.d("ANJ",""+dataVelg.getMerek_velg_id());
+                            Intent pindah = new Intent(ctx, Informasi_stokvelg.class);
+                            pindah.putExtra("idKategori", dataVelg.getMerek_velg_id());
                             pindah.putExtra("nama",nama);
                             pindah.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             ctx.startActivity(pindah);
@@ -281,20 +280,5 @@ public class AdapterSuspensi extends RecyclerView.Adapter<AdapterSuspensi.Tampun
             AlertDialog alert = builder.create();
             alert.show();
         }
-    }
-
-    public String Rupiah(double rupiah){
-        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-
-        String rp = kursIndonesia.format(rupiah);
-
-        return rp;
     }
 }

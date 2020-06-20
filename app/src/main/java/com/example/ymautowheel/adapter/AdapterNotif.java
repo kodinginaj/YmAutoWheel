@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.ymautowheel.BanActivity;
 import com.example.ymautowheel.R;
+import com.example.ymautowheel.SuspensiActivity;
 import com.example.ymautowheel.model.MerekBanModel;
 import com.example.ymautowheel.model.NotifikasiModel;
 
@@ -46,7 +47,7 @@ public class AdapterNotif extends RecyclerView.Adapter<AdapterNotif.TampungData>
             holder.ivFoto.setImageDrawable(ctx.getResources().getDrawable(R.drawable.ic_plusnotif));
         }
         holder.tJudul.setText(notifikasiModel.getJenis());
-        holder.tKeterangan.setText(notifikasiModel.getJenis()+"/"+notifikasiModel.getMerek()+"/"+notifikasiModel.getKeterangan());
+        holder.tKeterangan.setText(notifikasiModel.getType()+"/"+notifikasiModel.getMerek()+"/"+notifikasiModel.getKeterangan());
         holder.tStock.setText(notifikasiModel.getStock()+" Stock");
 
 
@@ -82,7 +83,8 @@ public class AdapterNotif extends RecyclerView.Adapter<AdapterNotif.TampungData>
                     }
 
                     if(notifikasiModel.getJenis().equals("Suspensi")){
-
+                        Intent pindah = new Intent(ctx, SuspensiActivity.class);
+                        ctx.startActivity(pindah);
                     }
 
                     if(notifikasiModel.getJenis().equals("Velg")){

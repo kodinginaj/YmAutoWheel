@@ -17,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Ubah_stocksuspensi extends AppCompatActivity {
+public class Ubah_stockvelg extends AppCompatActivity {
 
     EditText etSpesifikasi,etHarga;
     Button btnUbah;
@@ -25,19 +25,18 @@ public class Ubah_stocksuspensi extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ubah_stocksuspensi);
+        setContentView(R.layout.activity_ubah_stockvelg);
 
         Intent data = getIntent();
         String spesifikasi = data.getStringExtra("Spesifikasi");
         String harga = data.getStringExtra("Harga");
         String id = data.getStringExtra("Id");
-        String merekId = data.getStringExtra("MerekId");
-        String kategoriId = data.getStringExtra("KategoriId");
+        String merekId = data.getStringExtra("merekId");
         String nama = data.getStringExtra("nama");
 
         btnUbah = findViewById(R.id.btnUbah);
 
-        etSpesifikasi = findViewById(R.id.etSpek);
+        etSpesifikasi = findViewById(R.id.etSpesifikasi);
         etHarga = findViewById(R.id.etHarga);
 
         etSpesifikasi.setText(spesifikasi);
@@ -50,23 +49,22 @@ public class Ubah_stocksuspensi extends AppCompatActivity {
                 String hargaBaru = etHarga.getText().toString();
 
                 ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
-                Call<ResponseModel> updateSuspensi = api.updateSuspensi(id,spekbaru,hargaBaru);
-                updateSuspensi.enqueue(new Callback<ResponseModel>() {
+                Call<ResponseModel> updateVelg = api.updateVelg(id,spekbaru,hargaBaru);
+                updateVelg.enqueue(new Callback<ResponseModel>() {
                     @Override
                     public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
 //                        Log.d("CEK",""+expired);
 
-                        Toast.makeText(Ubah_stocksuspensi.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        Intent pindah = new Intent(Ubah_stocksuspensi.this, Informasi_stoksuspensi.class);
-                        pindah.putExtra("merekId", merekId);
-                        pindah.putExtra("kategoriId", kategoriId);
+                        Toast.makeText(Ubah_stockvelg.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent pindah = new Intent(Ubah_stockvelg.this, Informasi_stokvelg.class);
+                        pindah.putExtra("idKategori", merekId);
                         pindah.putExtra("nama",nama);
                         startActivity(pindah);
                     }
 
                     @Override
                     public void onFailure(Call<ResponseModel> call, Throwable t) {
-                        Toast.makeText(Ubah_stocksuspensi.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Ubah_stockvelg.this, "Koneksi Gagal", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

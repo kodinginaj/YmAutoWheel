@@ -25,6 +25,7 @@ import com.example.ymautowheel.api.Retroserver;
 import com.example.ymautowheel.model.MerekBanModel;
 import com.example.ymautowheel.model.ResponseModel;
 import com.example.ymautowheel.model.ResponseModelBan;
+import com.example.ymautowheel.util.Session;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,6 +56,7 @@ public class BanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ban);
+
 
         ivBack = findViewById(R.id.ivBack);
         ivBack.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +124,11 @@ public class BanActivity extends AppCompatActivity {
                 DialogForm();
             }
         });
+
+        Session session = new Session(BanActivity.this);
+        if(session.getRole().equals("0")){
+            ivNotif.setVisibility(View.GONE);
+        }
 
         tampilBan = findViewById(R.id.tampilMerekBan);
         layoutBan = new LinearLayoutManager(BanActivity.this, RecyclerView.VERTICAL, false);
